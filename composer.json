@@ -1,0 +1,28 @@
+{
+  "name": "itsjjfurki/drag-drop-switch",
+  "description": "Prevent accidental rearrangement of meta boxes while on post editing page in WordPress admin dashboard",
+  "type": "wordpress-plugin",
+  "keywords": [
+    "drag drop",
+    "disable drag drop",
+    "classic editor",
+    "post meta box",
+    "sortable"
+  ],
+  "homepage": "https://github.com/itsjjfurki/drag-drop-switch",
+  "license": ["GPL-3.0-or-later"],
+  "authors": [
+    {
+      "name": "Furkan OZTURK",
+      "homepage": "https://furkanozturk.dev/about"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/itsjjfurki/drag-drop-switch/issues",
+    "source": "https://github.com/itsjjfurki/drag-drop-switch"
+  },
+  "require": {
+    "php": ">=7.4"
+  },
+  "minimum-stability": "dev"
+}

@@ -1,0 +1,56 @@
+# Copyright (C) 2025 Furkan OZTURK
+# This file is distributed under the GPL v3.
+msgid ""
+msgstr ""
+"Project-Id-Version: Drag Drop Switch - Pause drag and drop for meta boxes on "
+"demand. 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/drag-drop-switch\n"
+"POT-Creation-Date: 2025-01-25T20:35:56+03:00\n"
+"PO-Revision-Date: 2025-01-25 21:15+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+"X-Domain: drag-drop-switch\n"
+
+#. Plugin Name of the plugin
+#: drag-drop-switch.php
+msgid "Drag Drop Switch - Pause drag and drop for meta boxes on demand."
+msgstr ""
+"Drag Drop Switch - Pausa il drag and drop per le meta box su richiesta."
+
+#. Description of the plugin
+#: drag-drop-switch.php
+msgid ""
+"Adds a toggle switch under Screen Options to disable or enable drag-and-drop "
+"functionality for meta boxes if Classic Editor plugin is installed and "
+"active."
+msgstr ""
+"Aggiunge un interruttore sotto le Opzioni Schermo per disabilitare o "
+"abilitare la funzionalità di drag-and-drop per le meta box se il plugin "
+"Classic Editor è installato e attivo."
+
+#: drag-drop-switch.php:31
+msgid ""
+"\"Drag Drop Switch\" plugin requires the \"Classic Editor\" plugin to be "
+"installed and activated. Please install and activate the Classic Editor "
+"plugin before activating this plugin"
+msgstr ""
+"Il plugin “Drag Drop Switch” richiede che il plugin “Classic Editor” sia "
+"installato e attivo. Si prega di installare e attivare il plugin Classic "
+"Editor prima di attivare questo plugin"
+
+#: drag-drop-switch.php:32
+msgid "Return to Plugins"
+msgstr "Torna ai Plugin"
+
+#: drag-drop-switch.php:63
+msgid "Enable / Disable drag and drop for meta boxes"
+msgstr "Abilita / Disabilita il drag and drop per le meta box"
+
+#: drag-drop-switch.php:64
+msgid "Check to disable drag and drop"
+msgstr "Seleziona per disabilitare il drag and drop"
