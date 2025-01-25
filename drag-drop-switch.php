@@ -6,7 +6,7 @@
  * @license   http://www.gnu.org/licenses/gpl-3.0.html GNU General Public License, version 3 or higher
  *
  * @wordpress-plugin
- * Plugin Name: Drag Drop Switch - Pause drag and drop for meta boxes on demand.
+ * Plugin Name: Drag Drop Switch
  * Version: 1.0.0
  * Plugin URI: https://github.com/itsjjfurki/drag-drop-switch
  * Description: Adds a toggle switch under Screen Options to disable or enable drag-and-drop functionality for meta boxes if Classic Editor plugin is installed and active.
@@ -31,7 +31,7 @@ if( ! function_exists('dds_activate') ) {
             $error_message = __( '"Drag Drop Switch" plugin requires the "Classic Editor" plugin to be installed and activated. Please install and activate the Classic Editor plugin before activating this plugin', 'drag-drop-switch' );
             $return_label = __( 'Return to Plugins', 'drag-drop-switch' );
             wp_die(
-                $error_message . '<br><br><a href="' . admin_url( 'plugins.php' ) . '">' . $return_label . '</a>'
+                esc_html($error_message) . '<br><br><a href="' . esc_html(admin_url( 'plugins.php' )) . '">' . esc_html($return_label) . '</a>'
             );
         }
     }
@@ -58,6 +58,7 @@ if( ! function_exists('dds_enqueue_scripts') ) {
 
             wp_localize_script( 'drag-drop-switch', 'DragDropSwitch', array(
                 'disabled' => get_user_meta(get_current_user_id(), 'dds_state', true) === '1' ? 'true' : 'false',
+                'nonce' => wp_create_nonce( 'dds_update_meta_nonce' ),
             ));
         }
     }
@@ -78,8 +79,16 @@ if( ! function_exists('dds_add_screen_option') ) {
 
 if( ! function_exists('dds_update_user_meta') ) {
     function dds_update_user_meta() {
-        if ( isset( $_POST['dds_state'] ) ) {
-            update_user_meta( get_current_user_id(), 'dds_state', sanitize_text_field( $_POST['dds_state'] ) );
+        $nonce = isset( $_POST['dds_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['dds_nonce'] ) ) : '';
+        $state = isset( $_POST['dds_state'] ) ? sanitize_text_field( wp_unslash( $_POST['dds_state'] ) ) : null;
+
+        if ( empty( $nonce ) || ! wp_verify_nonce( $nonce, 'dds_update_meta_nonce' ) ) {
+            wp_send_json_error( [ 'message' => 'Invalid nonce '.$nonce ] );
+            return;
+        }
+
+        if ( ! is_null( $state ) ) {
+            update_user_meta( get_current_user_id(), 'dds_state', sanitize_text_field( $state ) );
             wp_send_json_success();
         } else {
             wp_send_json_error();

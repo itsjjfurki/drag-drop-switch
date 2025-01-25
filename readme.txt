@@ -1,4 +1,4 @@
-=== Drag Drop Switch - Pause drag and drop for meta boxes on demand ===
+=== Drag Drop Switch ===
 Contributors: itsjjfurki
 Plugin URI: https://github.com/itsjjfurki/drag-drop-switch
 License: GPLv3

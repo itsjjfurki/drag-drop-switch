@@ -62,6 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
       body: new URLSearchParams({
         action: "dds_update_user_meta",
         dds_state: disableDrag ? "1" : "0",
+        dds_nonce: DragDropSwitch.nonce,
       }),
     })
       .then((response) => response.json())
