@@ -42,7 +42,7 @@ You can create issues on the [GitHub repository](https://github.com/itsjjfurki/d
 
 ## Changelog
 
-### 1.0.0 (2025-01-27)
+### 1.0.1 (2025-01-27)
 
 - Compatibility of plugin codebase for publishing in WordPress Plugin Directory is improved
 
