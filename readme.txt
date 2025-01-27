@@ -4,10 +4,8 @@ Plugin URI: https://github.com/itsjjfurki/drag-drop-switch
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl.html
 Tags: drag drop, disable drag drop, classic editor, post meta box, sortable
-Requires at least: 6.0
-Tested up to: 6.7.1
-Stable tag: 1.0.0
-Requires PHP: 7.4.0
+Tested up to: 6.7
+Stable tag: 1.0.1
 
 Short Description: Prevent accidental rearrangement of meta boxes while on post editing page.
 
@@ -52,6 +50,10 @@ This plugin does not collect, send, or share any data with third parties, ensuri
 You can create issues on GitHub repository https://github.com/itsjjfurki/drag-drop-switch
 
 == Changelog ==
+
+= 1.0.1 (2025-01-27) =
+
+Compatibility of plugin codebase for publishing in WordPress Plugin Directory is improved
 
 = 1.0.0 (2025-01-26) =
 

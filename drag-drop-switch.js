@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const toggleInput = document.getElementById("dds-toggle");
+  const toggleInput = document.getElementById("ddsw1tch-toggle");
 
   const toggleDragAndDrop = (state) => {
     toggleInput.checked = !!state;
@@ -60,12 +60,12 @@ document.addEventListener("DOMContentLoaded", function () {
         "Content-Type": "application/x-www-form-urlencoded",
       },
       body: new URLSearchParams({
-        action: "dds_update_user_meta",
-        dds_state: disableDrag ? "1" : "0",
-        dds_nonce: DragDropSwitch.nonce,
+        action: "ddsw1tch_update_user_meta",
+        ddsw1tch_state: disableDrag ? "1" : "0",
+        ddsw1tch_nonce: DragDropSwitch.nonce,
       }),
     })
-      .then((response) => response.json())
-      .then(() => {});
+        .then((response) => response.json())
+        .then(() => {});
   });
 });

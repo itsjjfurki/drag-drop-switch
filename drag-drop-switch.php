@@ -7,7 +7,7 @@
  *
  * @wordpress-plugin
  * Plugin Name: Drag Drop Switch
- * Version: 1.0.0
+ * Version: 1.0.1
  * Plugin URI: https://github.com/itsjjfurki/drag-drop-switch
  * Description: Adds a toggle switch under Screen Options to disable or enable drag-and-drop functionality for meta boxes if Classic Editor plugin is installed and active.
  * Author: Furkan OZTURK
@@ -24,8 +24,8 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-if( ! function_exists('dds_activate') ) {
-    function dds_activate() {
+if( ! function_exists('ddsw1tch_activate') ) {
+    function ddsw1tch_activate() {
         if ( ! class_exists( 'Classic_Editor' ) ) {
             deactivate_plugins( plugin_basename( __FILE__ ) );
             $error_message = __( '"Drag Drop Switch" plugin requires the "Classic Editor" plugin to be installed and activated. Please install and activate the Classic Editor plugin before activating this plugin', 'drag-drop-switch' );
@@ -37,39 +37,33 @@ if( ! function_exists('dds_activate') ) {
     }
 }
 
-register_activation_hook( __FILE__, 'dds_activate' );
+register_activation_hook( __FILE__, 'ddsw1tch_activate' );
 
-if( ! function_exists('dds_enqueue_scripts') ) {
-    function dds_load_textdomain() {
-        load_plugin_textdomain( 'drag-drop-switch', false, basename( dirname( __FILE__ ) ) . '/languages' );
-    }
-}
-
-if( ! function_exists('dds_enqueue_scripts') ) {
-    function dds_enqueue_scripts($hook) {
+if( ! function_exists('ddsw1tch_enqueue_scripts') ) {
+    function ddsw1tch_enqueue_scripts($hook) {
         if ($hook === 'post.php') {
             wp_enqueue_script(
                 'drag-drop-switch',
                 plugin_dir_url(__FILE__) . 'drag-drop-switch.js',
                 array('jquery'),
-                '1.0.0',
+                '1.0.1',
                 true
             );
 
             wp_localize_script( 'drag-drop-switch', 'DragDropSwitch', array(
-                'disabled' => get_user_meta(get_current_user_id(), 'dds_state', true) === '1' ? 'true' : 'false',
-                'nonce' => wp_create_nonce( 'dds_update_meta_nonce' ),
+                'disabled' => get_user_meta(get_current_user_id(), 'ddsw1tch_state', true) === '1' ? 'true' : 'false',
+                'nonce' => wp_create_nonce( 'ddsw1tch_update_meta_nonce' ),
             ));
         }
     }
 }
 
-if( ! function_exists('dds_add_screen_option') ) {
-    function dds_add_screen_option($screen_settings, $screen) {
+if( ! function_exists('ddsw1tch_add_screen_option') ) {
+    function ddsw1tch_add_screen_option($screen_settings, $screen) {
         if ( isset( $screen->id ) && ( $screen->id === 'post' || $screen->id === 'page' ) ) {
             $legend_label = __( "Enable / Disable drag and drop for meta boxes", 'drag-drop-switch' );
             $switch_label = __( "Check to disable drag and drop", 'drag-drop-switch' );
-            $toggle_container = '<fieldset class="dds-toggle-container"><legend>' . $legend_label . '</legend><label><input type="checkbox" id="dds-toggle">' . $switch_label . '</label></fieldset>';
+            $toggle_container = '<fieldset class="ddsw1tch-toggle-container"><legend>' . $legend_label . '</legend><label><input type="checkbox" id="ddsw1tch-toggle">' . $switch_label . '</label></fieldset>';
             return $screen_settings . $toggle_container;
         }
 
@@ -77,18 +71,18 @@ if( ! function_exists('dds_add_screen_option') ) {
     }
 }
 
-if( ! function_exists('dds_update_user_meta') ) {
-    function dds_update_user_meta() {
-        $nonce = isset( $_POST['dds_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['dds_nonce'] ) ) : '';
-        $state = isset( $_POST['dds_state'] ) ? sanitize_text_field( wp_unslash( $_POST['dds_state'] ) ) : null;
+if( ! function_exists('ddsw1tch_update_user_meta') ) {
+    function ddsw1tch_update_user_meta() {
+        $nonce = isset( $_POST['ddsw1tch_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['ddsw1tch_nonce'] ) ) : '';
+        $state = isset( $_POST['ddsw1tch_state'] ) ? sanitize_text_field( wp_unslash( $_POST['ddsw1tch_state'] ) ) : null;
 
-        if ( empty( $nonce ) || ! wp_verify_nonce( $nonce, 'dds_update_meta_nonce' ) ) {
+        if ( empty( $nonce ) || ! wp_verify_nonce( $nonce, 'ddsw1tch_update_meta_nonce' ) ) {
             wp_send_json_error( [ 'message' => 'Invalid nonce '.$nonce ] );
             return;
         }
 
         if ( ! is_null( $state ) ) {
-            update_user_meta( get_current_user_id(), 'dds_state', sanitize_text_field( $state ) );
+            update_user_meta( get_current_user_id(), 'ddsw1tch_state', sanitize_text_field( $state ) );
             wp_send_json_success();
         } else {
             wp_send_json_error();
@@ -97,8 +91,7 @@ if( ! function_exists('dds_update_user_meta') ) {
 }
 
 if ( class_exists( 'Classic_Editor' ) ) {
-    add_action( 'init', 'dds_load_textdomain' );
-    add_action( 'admin_enqueue_scripts', 'dds_enqueue_scripts' );
-    add_filter( 'screen_settings', 'dds_add_screen_option', 10, 2 );
-    add_action( 'wp_ajax_dds_update_user_meta', 'dds_update_user_meta' );
+    add_action( 'admin_enqueue_scripts', 'ddsw1tch_enqueue_scripts' );
+    add_filter( 'screen_settings', 'ddsw1tch_add_screen_option', 10, 2 );
+    add_action( 'wp_ajax_ddsw1tch_update_user_meta', 'ddsw1tch_update_user_meta' );
 }
